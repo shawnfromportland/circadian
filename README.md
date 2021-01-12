@@ -1,5 +1,6 @@
 # circadian
 Circadian processor javascript library by @shawnfromportland and @beneatspineapple
+![alt text](https://oscc.files.wordpress.com/2017/05/screen-shot-2017-05-15-at-11-41-42-am.png)
 
 ## Circadian provides 2 main features:
 

@@ -14,7 +14,7 @@ circadian processor javascript library
   
 
 ## static methods
-these methods return any desired piece of circadian data (using the [https://github.com/mourner/suncalc](sunCalc package)), assuming smart defaults and accepting many config options.
+these methods return any desired piece of circadian data (using the SunCalc package https://github.com/mourner/suncalc), assuming smart defaults and accepting many config options.
 
 //EXAMPLES:
   //Example 1:  

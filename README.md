@@ -1,5 +1,5 @@
 # circadian
-circadian processor javascript library
+Circadian processor javascript library by @shawnfromportland and @beneatspineapple
 
 ## Circadian provides 2 main features:
 

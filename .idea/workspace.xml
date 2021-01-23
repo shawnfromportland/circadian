@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="28d6a310-fee7-4a94-908d-a966f4f2d07a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/r.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/r.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/r.js.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/r.js.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/r_js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/r_js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/r_js.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/r_js.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/requirejs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/requirejs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/requirejs/bin/r.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/requirejs/bin/r.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/requirejs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/requirejs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/requirejs/require.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/requirejs/require.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/suncalc/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/suncalc/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/suncalc/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/suncalc/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/suncalc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/suncalc/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/suncalc/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/suncalc/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/suncalc/suncalc.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/suncalc/suncalc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/suncalc/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/suncalc/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/suncalc/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/suncalc/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1nTcSE8eFTz7sSvXn4xYdMJ2NoH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="28d6a310-fee7-4a94-908d-a966f4f2d07a" name="Default Changelist" comment="" />
+      <created>1611417518841</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611417518841</updated>
+      <workItem from="1611417519946" duration="10129000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="415" y="216" width="672" height="678" key="search.everywhere.popup" timestamp="1611422820874">
+      <screen x="0" y="0" width="1504" height="1003" />
+    </state>
+    <state x="415" y="216" width="672" height="678" key="search.everywhere.popup/0.0.1504.1003/-1920.106.1920.1080@0.0.1504.1003" timestamp="1611422820874" />
+  </component>
+</project>

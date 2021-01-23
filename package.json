@@ -1,15 +1,11 @@
 {
   "name": "circadian",
   "version": "1.0.0",
-  "description": "This is the circadian package.",
-  "main": "js.js",
-  "dependencies": {
-    "requirejs": "^2.3.6",
-    "suncalc": "^1.8.0"
-  },
-  "devDependencies": {},
+  "description": "Circadian processor javascript library by @shawnfromportland and @beneatspineapple\r ![alt text](https://oscc.files.wordpress.com/2017/05/screen-shot-2017-05-15-at-11-41-42-am.png)",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "watchify app.js -o bundle.js -v"
   },
   "repository": {
     "type": "git",
@@ -20,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/shawnfromportland/circadian/issues"
   },
-  "homepage": "https://github.com/shawnfromportland/circadian#readme"
+  "homepage": "https://github.com/shawnfromportland/circadian#readme",
+  "dependencies": {
+    "requirejs": "^2.3.6",
+    "suncalc": "^1.8.0",
+    "watchify": "^3.11.1"
+  }
 }

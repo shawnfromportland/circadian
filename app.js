@@ -1,7 +1,9 @@
 // import sunCalc and set global variables
+
+//run npm start once on reboot
 //============================================================================
 const SunCalc = require('suncalc');
-
+console.log("asefapsoidghapefoijasdf");
 // define constants for our different phases
 const ASTRONIMCAL_TWILIGHT_MORNING = 'ASTRONIMCAL_TWILIGHT_MORNING'
 const NAUTICAL_TWILIGHT_MORNING = 'NAUTICAL_TWILIGHT_MORNING'
@@ -58,7 +60,8 @@ function outputSuncalcTimes(){
 }
 
 function outputAllFunctionResults(){
-    console.log('getPhases: '+getPhases())
+    console.log('getPhases')
+    console.log(getPhases())
     console.log('getPhase: '+getPhase())
     console.log('getPercentageOfDaylightCompleted: '+getPercentageOfDaylightCompleted())
     console.log('getPercentageOfDaylightRemaining: '+getPercentageOfDaylightRemaining())
@@ -73,7 +76,7 @@ function outputAllFunctionResults(){
 }
 
 function getPhases(){
-    // returns array of objects containing a start: date object, phase_name: 'phase_name',end: date object
+    // returns array of objects containing a start: date object, phase: 'phase_name',end: date object
     /*
         [
             {
@@ -88,9 +91,19 @@ function getPhases(){
             },
             ...
         ]
-     */
-    return 'TBD'
+        */
+        let BensObject = {
+
+          phase: CIVIL_TWILIGHT_EVENING,
+          start: new Date(),
+          end: new Date()
+
+// start:
+        }
+
+    return [BensObject, BensObject, BensObject]
 }
+
 
 
 function getPhase(phaseName){

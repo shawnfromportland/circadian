@@ -2,9 +2,9 @@
 // import sunCalc and set global variables
 
 //run npm start once on reboot
+//cd C:\Users\benos\OneDrive\Documents\GitHub\circadian
 //============================================================================
 const SunCalc = require('suncalc');
-
 // define constants for our different phases
 const ASTRONIMCAL_TWILIGHT_MORNING = 'ASTRONIMCAL_TWILIGHT_MORNING'
 const NAUTICAL_TWILIGHT_MORNING = 'NAUTICAL_TWILIGHT_MORNING'
@@ -93,17 +93,54 @@ function getPhases(){
             ...
         ]
         */
-        let BensObject = {
+        console.log("THIS IS SUNCALC GOLDEN HOUR : " + sunCalcTimes.goldenHour);
+        console.log("THIS IS SUNCALC CIVIL_TWILIGHT_EVENING" + CIVIL_TWILIGHT_EVENING);
+        [
+          {
+            phase: CIVIL_TWILIGHT_EVENING, // would it make more sense to create a phase Class and use inheritance to clean up code here, can you even do that in functions?
+            start: sunCalcTimes.sunset, // starts at civil dusk
+            end: sunCalcTimes.dusk // ends at sunset
+          },
+          {
+            phase: NAUTICAL_TWILIGHT_EVENING,
+            start: sunCalcTimes.dusk,
+            end: sunCalcTimes.nauticalDusk
+          },
+          {
+            phase: ASTRONIMCAL_TWILIGHT_EVENING,
+            start: sunCalcTimes.nauticalDusk,
+            end: sunCalcTimes.night
+          },
+          {
+            phase: NIGHT,
+            start: sunCalcTimes.night,
+            end: sunCalcTimes.nightEnd
+          },
+          {
+            phase: ASTRONIMCAL_TWILIGHT_MORNING,
+            start: sunCalcTimes.nightEnd,
+            end: sunCalcTimes.nauticalDawn
+          },
+          {
+            phase: NAUTICAL_TWILIGHT_MORNING,
+            start: sunCalcTimes.nauticalDawn,
+            end: sunCalcTimes.dawn
+          },
+          {
+            phase: CIVIL_TWILIGHT_MORNING,
+            start: sunCalcTimes.dawn,
+            end: sunCalcTimes.sunrise
+          },
+          {
+            phase: DAY,
+            start: sunCalcTimes.sunrise,
+            end: sunCalcTimes.sunset
+          },
+        ]
 
-          phase: CIVIL_TWILIGHT_EVENING,
-          start: new Date(),
-          end: new Date()
+
 
         }
-
-
-    return [BensObject, BensObject, BensObject]
-}
 
 
 function getPhase(phaseName){

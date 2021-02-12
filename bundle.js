@@ -93,8 +93,7 @@ function getPhases(){
             ...
         ]
         */
-        console.log("THIS IS SUNCALC GOLDEN HOUR : " + sunCalcTimes.goldenHour);
-        console.log("THIS IS SUNCALC CIVIL_TWILIGHT_EVENING" + CIVIL_TWILIGHT_EVENING);
+
         [
           {
             phase: CIVIL_TWILIGHT_EVENING, // would it make more sense to create a phase Class and use inheritance to clean up code here, can you even do that in functions?

@@ -55,14 +55,13 @@ function positionFound(position){
 //============================================================================
 function outputSuncalcTimes(){
     console.log('outputSuncalcTimesAsATest:');
-    console.log(sunCalcTimes)
+    // console.log(sunCalcTimes)
 
     outputAllFunctionResults()
 }
 
 function outputAllFunctionResults(){
-    console.log('getPhases')
-    console.log(getPhases())
+    console.log('getPhases: '+getPhases())
     console.log('getPhase: '+getPhase())
     console.log('getPercentageOfDaylightCompleted: '+getPercentageOfDaylightCompleted())
     console.log('getPercentageOfDaylightRemaining: '+getPercentageOfDaylightRemaining())
@@ -93,7 +92,8 @@ function getPhases(){
             ...
         ]
         */
-
+ // Class_Name objectArrayReference
+let bensArray =
         [
           {
             phase: CIVIL_TWILIGHT_EVENING, // would it make more sense to create a phase Class and use inheritance to clean up code here, can you even do that in functions?
@@ -136,72 +136,77 @@ function getPhases(){
             end: sunCalcTimes.sunset
           },
         ]
+console.log(bensArray)
 
-
+return bensArray
 
         }
 
-
-function getPhase(phaseName){
+//
+function getPhase(){
+let bensArray = getPhases(); // LOOK HERE SHAWN $!$#!%!%^@#$!
+  console.log(bensArray.find(b => b.phase == DAY));
     // accepts a specific phase name (later will accept parameters for location and date)
     // returns: same as getPhases but just a single object for the current phase.
     return 'TBD'
 }
 
 
-function getPercentageOfDaylightCompleted(){
-
-    //0.75
-    return 'TBD'
-}
-
-function getPercentageOfDaylightRemaining(){
-    //0.25
-    return 'TBD'
-}
-
-
-function getSecondsOfDaylightCompleted(){
-    //1800
-    return 'TBD'
-}
-
-
-function getSecondsOfDaylightRemaining() {
-    //2400
-    return 'TBD'
-}
-
-function getPercentageOfPhaseCompleted() {
-    //.98
-    return 'TBD'
-}
-
-function getPercentageOfPhaseRemaining() {
-    //1.0
-    return 'TBD'
-}
-
-function getSecondsOfPhaseCompleted() {
-    //8400
-    return 'TBD'
-}
-
-function getSecondsOfPhaseRemaining() {
-    //0
-    return 'TBD'
-}
-
-function getAzimuth() {
-    //21.6
-    return 'TBD'
-}
-
-
-
-// run any tests using the above functions, below here:
-//============================================================================
-outputSuncalcTimes()
+//
+//
+// function getPercentageOfDaylightCompleted(){
+//
+//     //0.75
+//     return 'TBD'
+// }
+//
+// function getPercentageOfDaylightRemaining(){
+//     //0.25
+//     return 'TBD'
+// }
+//
+//
+// function getSecondsOfDaylightCompleted(){
+//     //1800
+//     return 'TBD'
+// }
+//
+//
+// function getSecondsOfDaylightRemaining() {
+//     //2400
+//     return 'TBD'
+// }
+//
+// function getPercentageOfPhaseCompleted() {
+//     //.98
+//     return 'TBD'
+// }
+//
+// function getPercentageOfPhaseRemaining() {
+//     //1.0
+//     return 'TBD'
+// }
+//
+// function getSecondsOfPhaseCompleted() {
+//     //8400
+//     return 'TBD'
+// }
+//
+// function getSecondsOfPhaseRemaining() {
+//     //0
+//     return 'TBD'
+// }
+//
+// function getAzimuth() {
+//     //21.6
+//     return 'TBD'
+// }
+//
+//
+//
+// // run any tests using the above functions, below here:
+// //============================================================================
+// outputSuncalcTimes()
 
 },{"suncalc":2}],2:[function(require,module,exports){
 /*

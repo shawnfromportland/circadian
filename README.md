@@ -5,7 +5,9 @@
 
 Circadian animates the color of page elements according to a time and place on earth.  
   
-  live demo: <a href="https://shawnfromportland.com/circadian">shawnfromportland.com/circadian</a>
+  live demo: <a href="https://shawnfromportland.com/circadian">shawnfromportland.com/circadian</a>  
+    
+It's a tiny javascript relying on [`sunCalc`](https://github.com/mourner/suncalc), and ultra-efficient: color animations are _pure css_.
 
 ## Usage
 

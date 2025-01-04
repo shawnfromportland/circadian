@@ -322,7 +322,7 @@ class Circadian {
 
         console.log('generateCircadianCSS entered. this.config.transitionMode ', this.config.transitionMode);
         let cssContent = `
-            @keyframes circadian {
+            @keyframes circadian-animation {
                 0%, 100% {
                     background: ${bgColors.nadir};
                     color: ${textColors.nadir};
@@ -330,7 +330,7 @@ class Circadian {
         `;
 
         let invertCssContent = `
-            @keyframes circadian-invert {
+            @keyframes circadian-animation-invert {
                 0%, 100% {
                     background: ${textColors.nadir};
                     color: ${bgColors.nadir};
@@ -401,32 +401,12 @@ class Circadian {
         }
 
         cssContent += `}.circadian {
-            animation: circadian 86400s linear -${secondsSinceDayStart}s infinite normal;
-        }
+            animation: circadian-animation 86400s linear -${secondsSinceDayStart}s infinite normal;
+        }`;
 
-        .circadian-invert {
-            animation: circadian-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
-        }
-
-        // cssContent += `
-        //     }
-        //     body {
-        //         animation: color-animation 86400s linear -${secondsSinceDayStart}s infinite normal;
-        //     }
-        //     a, a:visited, a:active {
-        //         animation: color-animation 86400s linear -${secondsSinceDayStart}s infinite normal;
-        //     }
-        // `;
-
-        // invertCssContent += `
-        //     }
-        //     body.invert {
-        //         animation: color-animation-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
-        //     }
-        //     body.invert a, body.invert a:visited, body.invert a:active {
-        //         animation: color-animation-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
-        //     }
-        // `;
+        invertCssContent += `}.circadian-invert {
+            animation: circadian-animation-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
+        }`;
 
         styleEl.innerHTML = cssContent + invertCssContent;
         // Remove old style tag if it exists
@@ -437,7 +417,7 @@ class Circadian {
 
         // Add new style tag with an id
         styleEl.id = 'circadian-styles';
-        document.head.appendChild(styleEl);
+        document.head.prepend(styleEl);
     }
 
     initCircadianAnimation() {

@@ -119,17 +119,19 @@
         }
     </style>
     <style id="circadian-styles"></style>
+    <style id="custom">
+        .circadian {
+            animation-duration: 40s !important;
+        }
 
+        .circadian-invert {
+            animation-duration: 40s !important;
+        }
+    </style>
 </head>
 
 <body class="circadian">
-    <style>
-        .circadian,
-        .circadian-invert {
-            animation: circadian 40s linear infinite normal;
-            animation-duration: 40s;
-        }
-    </style>
+
     <h1 class="alfa-slab-one-regular">Circadian</h1>
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" style="margin:0;"
         viewBox="0 0 1280.000000 792.000000" preserveAspectRatio="xMidYMid meet" class="svgart">
@@ -229,7 +231,7 @@ c65 -16 133 -34 149 -40 l30 -11 -22 19 c-13 11 -23 22 -23 25 0 14 26 4 53
 0 2 16 47 35 100 35 96 35 96 15 116 -26 26 -25 44 3 63 12 8 19 18 15 22 -3
 4 -42 9 -86 12 l-80 6 -12 58 c-7 33 -15 59 -17 59 -18 0 -83 -44 -83 -56 0
 -8 -4 -12 -10 -9 -5 3 -10 22 -10 41 0 37 -7 41 -35 20 -16 -12 -25 -8 -77 32
--56 43 -59 45 -72 26 -13 -18 -15 -17 -28 16 -13 31 -15 33 -25 16z m787 -646
+-56 43 -59 45 -72 26 -13 18 -15 -17 -28 16 -13 31 -15 33 -25 16z m787 -646
 c0 -5 -9 -10 -20 -10 -11 0 -20 5 -20 10 0 6 9 10 20 10 11 0 20 -4 20 -10z
 m-1271 -17 c6 -12 27 -19 62 -23 56 -5 75 -23 37 -34 -36 -9 -228 -7 -228 3 0
 5 3 23 6 40 6 30 8 31 60 31 40 0 55 -4 63 -17z m-324 -43 c3 -5 -1 -10 -9
@@ -272,8 +274,7 @@ m-619 -86 c14 -10 16 -21 11 -50 -7 -37 -8 -37 -56 -37 -35 0 -54 5 -69 20
         </g>
     </svg>
 
-    <div class="circadian-invert" style="width:100%; height: 200px;;">
-
+    <div class="circadian-invert" style="width:100%; height: 200px;"></div>
     </div>
 
     <!-- time slider -->
@@ -309,20 +310,21 @@ m-619 -86 c14 -10 16 -21 11 -50 -7 -37 -8 -37 -56 -37 -35 0 -54 5 -69 20
 
         </div>
 
-        <h2 class="alfa-slab-one-regular circadian">GPS Coords</h2>
-        <div class="coordinates-input" style="margin-bottom: 40px;">
-            <input type="text" id="coordinates" placeholder="43.055528, -76.136194" value="43.055528, -76.136194"
-                class="circadian"
-                style="margin-bottom: 10px; border: none; font-size: 26px; padding:18px; color: inherit; background: transparent;">
-            <div id="map" class="circadian-invert"></div>
-        </div>
+
 
         <p class="circadian-invert" style="text-align: center;;">
             circadian is a minimalistic raw javascript that animates background and foreground colors of elements on a
             page according to
             a time and place on earth.
         </p>
+        <h2 class="alfa-slab-one-regular circadian">GPS Coords</h2>
 
+        <div class="coordinates-input" style="margin-bottom: 40px;">
+            <input type="text" id="coordinates" placeholder="43.055528, -76.136194" value="43.055528, -76.136194"
+                class="circadian"
+                style="margin-bottom: 10px; border: none; font-size: 26px; padding:18px; color: inherit; background: transparent;">
+
+        </div>
         <p class="circadian-invert" style="text-align: center;;">
             This demo is cycling the 24 hour cycle in 40 seconds. You can type in your own coordinates and hit enter to
             get animations based on your time and place.

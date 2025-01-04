@@ -1,7 +1,9 @@
 
 ## Circadian
 
-Circadian animates the color of page elements according to a time and place on earth.
+Circadian animates the color of page elements according to a time and place on earth.  
+  
+  live demo: <a href="https://shawnfromportland.com/circadian">shawnfromportland.com/circadian</a>
 
 ### Usage
 

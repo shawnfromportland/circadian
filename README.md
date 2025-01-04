@@ -8,6 +8,7 @@ Circadian animates the color of page elements according to a time and place on e
 ### Usage
 
 Include it from the CDN:
+(coming soon... this library is in progress)
 ```javascript
 const myCircadian = new Circadian();
 myCircadian.init();

@@ -1,10 +1,472 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-  <head>
-    <script src="bundle.js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circadian Animation</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"></script>
+    <script src="./circadian.js"></script>
+    <!-- include css.css -->
+    <link rel="stylesheet" href="css.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background-color 1s, color 1s;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #header {
+            background-size: contain;
+            border: none;
+            margin-left: auto;
+            margin-right: auto;
+            /* Ensure border is removed */
+        }
+
+        .emoji-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            pointer-events: none;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+        }
+
+        .slider-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .slider {
+            width: 80%;
+        }
+
+        .time-label {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            padding: 10px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 8px;
+        }
+
+        /* add a button.active class */
+        button.active,
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <style>
+        .alfa-slab-one-regular {
+            font-family: "Alfa Slab One", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1 {
+            font-size: 8rem;
+        }
+
+        h2 {
+            font-size: 1rem;
+            margin: 0;
+            margin-top: 40px;
+            padding: 8px;
+
+        }
+
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .slider {
+            margin: 40px;
+        }
+
+        .value {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .circadian {
+            animation: color-animation 40s linear infinite normal;
+        }
+
+        .circadian-invert {
+            animation: color-animation-invert 40s linear infinite normal;
+        }
+    </style>
+
+</head>
+
+<body class="circadian">
+
+    <h1 class="alfa-slab-one-regular">Circadian</h1>
+    <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" style="margin:0;"
+        viewBox="0 0 1280.000000 792.000000" preserveAspectRatio="xMidYMid meet" class="svgart">
+        <metadata>
+            Created by potrace 1.15, written by Peter Selinger 2001-2017
+        </metadata>
+        <g transform="translate(0.000000,792.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+            <path d="M11283 7906 c-9 -16 -13 -16 -31 -5 -18 11 -24 10 -41 -5 -11 -10
+-23 -27 -26 -37 -8 -25 -22 -24 -30 1 -3 11 -15 25 -26 31 -17 8 -23 7 -34 -7
+-12 -18 -14 -18 -46 0 -57 30 -96 4 -113 -74 -7 -35 -36 -69 -43 -52 -11 28
+-52 33 -93 12 -48 -25 -61 -25 -108 -1 -40 20 -53 18 -94 -10 -28 -21 -58 -25
+-58 -9 0 18 -32 10 -63 -16 -25 -21 -37 -24 -66 -19 -29 5 -44 1 -75 -20 -35
+-24 -39 -25 -51 -9 -11 16 -16 16 -81 0 -38 -10 -77 -25 -87 -33 -16 -15 -20
+-15 -50 2 -22 11 -45 16 -63 12 -20 -4 -35 0 -49 12 -11 10 -40 23 -64 30 -42
+12 -45 12 -63 -11 -9 -12 -18 -28 -18 -34 0 -6 -9 -19 -20 -29 -15 -13 -17
+-22 -10 -36 6 -10 10 -40 10 -67 0 -43 5 -57 40 -100 21 -28 44 -53 50 -57 12
+-7 14 -65 2 -65 -5 0 -19 11 -31 24 l-23 24 -44 -45 c-25 -25 -44 -46 -42 -47
+2 -2 31 -9 64 -16 52 -10 61 -15 57 -31 -4 -13 15 -40 61 -90 36 -39 66 -77
+66 -84 0 -16 -22 -25 -60 -25 -20 0 -31 -6 -35 -20 -8 -24 -28 -26 -45 -5 -7
+8 -28 15 -47 15 -29 0 -43 8 -78 46 l-42 46 -94 9 c-98 9 -165 24 -186 41 -7
+6 -13 26 -13 46 0 34 -1 35 -19 18 -26 -24 -42 -12 -34 24 l6 30 -54 0 c-44 0
+-58 -5 -81 -27 -28 -26 -28 -26 -28 -4 0 12 9 40 20 62 12 22 18 44 15 50 -4
+5 -29 28 -57 50 -45 35 -53 38 -67 25 -23 -20 -55 -23 -74 -7 -25 20 -40 9
+-103 -74 -52 -69 -60 -76 -85 -71 -27 5 -28 4 -35 -50 -8 -67 -1 -106 28 -153
+19 -30 23 -33 26 -16 1 11 5 30 8 43 l5 23 67 -37 c37 -20 83 -52 102 -70 28
+-26 44 -34 73 -34 21 0 46 -5 57 -12 17 -11 24 -8 49 16 27 26 33 28 59 17 16
+-7 44 -28 62 -46 27 -28 32 -39 27 -63 -5 -25 -3 -29 11 -26 9 2 82 20 162 40
+155 38 198 39 305 9 78 -23 84 -29 55 -59 -32 -35 -5 -35 46 -1 88 60 128 57
+261 -19 62 -35 71 -44 66 -63 -4 -20 -1 -23 21 -23 15 0 42 6 60 14 37 15 47
+12 65 -21 17 -33 15 -36 -39 -77 -74 -57 -67 -85 11 -45 22 11 52 19 66 17 33
+-4 62 -42 70 -91 5 -33 1 -43 -27 -78 -26 -33 -30 -43 -19 -50 24 -15 55 -10
+93 16 l36 24 6 -25 c5 -18 -6 -51 -39 -118 -41 -85 -48 -94 -78 -100 l-33 -6
+37 -26 c32 -21 37 -30 37 -62 0 -68 -19 -110 -79 -175 -80 -85 -82 -96 -30
+-151 33 -37 40 -51 35 -71 -5 -19 -13 -25 -34 -25 -28 0 -112 53 -112 71 0 5
+-9 9 -20 9 -17 0 -20 -7 -20 -47 0 -57 -7 -70 -40 -74 -14 -2 -29 -14 -34 -25
+-9 -20 -12 -21 -43 -8 -39 17 -78 9 -98 -19 -14 -20 -14 -20 -45 7 -17 14 -35
+26 -39 26 -4 0 -17 -13 -29 -30 -14 -18 -32 -30 -45 -30 -21 0 -25 -9 -41 -74
+-27 -114 -3 -176 66 -176 13 0 32 6 42 13 17 12 17 16 2 51 -20 48 -20 46 7
+46 24 0 97 -66 97 -88 0 -16 32 -15 66 2 28 15 50 10 72 -17 17 -20 -31 -105
+-67 -119 l-26 -11 25 -7 c14 -5 37 -8 52 -9 67 -2 39 -51 -53 -91 -86 -38
+-176 -61 -206 -54 -16 4 -43 -2 -73 -16 l-49 -23 -51 22 c-47 20 -53 21 -69 7
+-24 -22 -36 -20 -54 7 -15 21 -15 20 -10 -19 6 -48 -15 -77 -55 -72 -41 5 -50
+32 -23 69 l23 31 -43 39 c-24 21 -51 41 -60 44 -10 3 -16 17 -16 35 0 20 -10
+41 -28 60 -27 28 -28 31 -11 43 16 12 16 15 -2 62 -21 53 -49 69 -77 45 -12
+-10 -16 -9 -21 4 -4 11 -18 16 -44 16 -35 0 -39 -3 -50 -35 l-12 -35 -28 23
+c-15 13 -41 29 -58 36 -25 11 -32 20 -39 59 l-8 47 -45 3 c-38 2 -50 -1 -69
+-22 -22 -23 -22 -26 -7 -48 16 -22 22 -58 10 -58 -3 0 -31 18 -61 40 -64 45
+-80 48 -116 20 -14 -11 -32 -20 -40 -20 -8 0 -26 -11 -41 -25 -34 -31 -40 -31
+-66 3 -17 21 -21 36 -17 65 6 43 11 44 -70 -23 -24 -19 -43 -38 -43 -42 0 -5
+-10 -29 -21 -54 -40 -85 -35 -87 -356 122 l-287 186 -95 -28 c-104 -30 -271
+-45 -271 -25 0 33 -71 11 -540 -169 -212 -81 -504 -187 -650 -235 -146 -48
+-350 -123 -455 -166 -175 -71 -307 -109 -383 -109 -12 0 -81 40 -154 90 -88
+60 -140 90 -159 90 -15 0 -31 4 -34 10 -3 5 -31 17 -61 26 -45 13 -75 33 -157
+106 -194 173 -250 195 -340 138 l-47 -30 -9 23 c-5 12 -17 44 -27 71 -27 69
+-55 87 -141 89 -51 2 -77 7 -90 20 -21 19 -53 23 -53 7 0 -20 -31 -9 -57 20
+-45 51 -101 36 -202 -55 -57 -51 -113 -85 -139 -85 -5 0 -23 22 -40 50 -21 34
+-36 48 -46 44 -28 -11 -102 32 -133 77 -54 78 -113 204 -113 240 -1 54 -128
+219 -169 219 -10 0 -24 7 -31 15 -18 22 -35 19 -107 -21 l-65 -37 -117 6
+c-139 7 -209 26 -260 73 -31 27 -47 34 -79 34 -29 0 -49 7 -70 25 -17 14 -36
+25 -44 25 -7 0 -48 20 -90 45 -57 33 -104 51 -183 70 -59 14 -128 37 -154 52
+-33 18 -55 24 -72 20 -13 -4 -97 -67 -186 -141 l-162 -135 -18 27 c-10 15 -23
+36 -29 47 -13 23 -35 29 -68 21 -18 -4 -25 -15 -30 -45 -7 -46 -24 -62 -68
+-64 -25 -2 -39 -10 -55 -33 -27 -39 -54 -50 -65 -29 -12 21 -45 19 -58 -4 -5
+-11 -10 -35 -10 -53 0 -48 -8 -55 -75 -62 -108 -12 -114 -15 -135 -57 -11 -21
+-24 -39 -28 -39 -4 0 -88 81 -187 180 -99 99 -183 180 -187 180 -4 0 -15 -15
+-24 -32 l-17 -33 -8 25 c-4 14 -10 42 -14 62 -8 53 -50 97 -122 130 -59 26
+-63 27 -90 12 -27 -16 -31 -15 -98 12 -64 27 -70 32 -73 62 -3 31 -4 32 -25
+17 -33 -23 -53 -18 -99 22 -24 20 -51 44 -60 52 -17 13 -18 -142 -18 -3237 l0
+-3252 6400 0 6400 0 0 1614 c0 1425 -2 1615 -15 1620 -9 3 -15 18 -15 35 0 16
+-6 31 -15 35 -8 3 -12 12 -9 20 4 10 -2 17 -19 21 -14 4 -28 13 -31 21 -3 8
+-11 14 -19 14 -20 0 -57 43 -57 67 0 12 -5 23 -11 25 -5 2 -11 12 -13 23 -2
+13 -20 25 -60 38 -57 19 -58 19 -84 0 -34 -26 -37 -39 -11 -46 20 -5 21 -10
+15 -57 -12 -89 3 -83 -195 -78 l-176 5 -210 78 c-439 162 -510 192 -618 267
+-185 126 -422 285 -446 298 -14 7 -138 52 -275 101 -345 120 -326 111 -316
+151 28 120 55 173 98 189 40 15 163 15 191 0 22 -12 26 -11 42 10 56 73 -30
+118 -188 101 -72 -8 -73 -8 -73 15 0 14 28 52 80 107 44 47 80 89 80 94 0 5
+-13 9 -30 9 -54 0 -30 57 28 70 65 14 215 -22 244 -45 32 -25 45 -25 67 -1 13
+15 38 19 129 25 146 9 157 20 87 83 -59 53 -64 80 -21 116 35 29 114 42 196
+32 56 -7 56 -7 50 17 -5 18 3 38 29 77 20 29 39 64 42 77 4 14 16 27 30 30 47
+12 23 21 -32 12 l-56 -9 -68 63 c-64 60 -68 66 -75 118 -9 79 -10 80 -54 80
+-41 0 -71 20 -71 46 0 8 -10 14 -22 14 -47 0 -103 28 -123 61 -13 19 -42 42
+-75 58 l-55 26 1 115 c1 130 17 234 44 278 19 30 35 35 188 58 50 7 50 20 2
+48 -22 13 -53 20 -92 20 -57 1 -58 1 -58 30 0 47 37 112 70 126 19 8 62 11
+120 8 71 -3 87 -2 79 8 -25 30 -97 47 -179 42 -79 -5 -81 -4 -101 23 -31 44
+-71 138 -65 154 9 24 50 45 112 56 70 13 81 21 105 76 l18 43 122 0 c106 0
+124 -2 146 -20 14 -11 32 -20 40 -20 17 0 63 48 63 66 0 20 -23 17 -43 -6 -28
+-33 -51 -24 -112 45 -40 46 -64 65 -81 65 -30 0 -31 -11 -3 -36 12 -10 27 -31
+35 -46 l15 -28 -49 0 c-26 0 -54 6 -60 12 -7 7 -28 11 -47 10 -36 -4 -75 12
+-75 30 0 17 79 88 98 88 10 0 24 -6 31 -12 10 -11 12 -8 9 11 -2 16 5 30 24
+44 l26 20 82 -22 c58 -16 89 -30 105 -48 24 -29 20 -30 126 31 l46 26 119 -29
+c65 -16 133 -34 149 -40 l30 -11 -22 19 c-13 11 -23 22 -23 25 0 14 26 4 53
+-21 27 -26 29 -27 41 -10 18 23 36 22 36 -3 0 -27 15 -25 75 6 43 23 53 25 80
+15 49 -17 79 -13 106 15 l24 26 -50 -4 c-73 -5 -66 19 15 48 50 18 78 37 127
+86 35 34 63 66 63 70 0 4 -17 19 -39 32 -31 20 -39 32 -45 64 -5 36 -9 40 -43
+47 -22 4 -48 19 -66 38 -29 31 -29 31 -59 14 -40 -23 -57 -22 -101 9 -47 32
+-67 26 -67 -19 0 -19 -3 -49 -6 -66 -6 -27 -10 -31 -40 -31 -19 0 -34 2 -34 4
+0 2 16 47 35 100 35 96 35 96 15 116 -26 26 -25 44 3 63 12 8 19 18 15 22 -3
+4 -42 9 -86 12 l-80 6 -12 58 c-7 33 -15 59 -17 59 -18 0 -83 -44 -83 -56 0
+-8 -4 -12 -10 -9 -5 3 -10 22 -10 41 0 37 -7 41 -35 20 -16 -12 -25 -8 -77 32
+-56 43 -59 45 -72 26 -13 -18 -15 -17 -28 16 -13 31 -15 33 -25 16z m787 -646
+c0 -5 -9 -10 -20 -10 -11 0 -20 5 -20 10 0 6 9 10 20 10 11 0 20 -4 20 -10z
+m-1271 -17 c6 -12 27 -19 62 -23 56 -5 75 -23 37 -34 -36 -9 -228 -7 -228 3 0
+5 3 23 6 40 6 30 8 31 60 31 40 0 55 -4 63 -17z m-324 -43 c3 -5 -1 -10 -9
+-10 -9 0 -16 5 -16 10 0 6 9 10 20 10 11 0 20 -4 20 -10z m-391 -89 c6 -12 27
+-19 62 -23 56 -5 75 -23 37 -34 -36 -9 -228 -7 -228 3 0 5 3 23 6 40 6 30 8
+31 60 31 40 0 55 -4 63 -17z m699 1 c16 -7 14 -12 -17 -49 -20 -22 -47 -44
+-61 -47 -26 -7 -34 -33 -14 -53 25 -25 -137 -113 -208 -113 -29 0 -69 29 -102
+75 -32 44 -35 46 -71 40 -60 -10 -100 16 -100 66 0 26 15 39 46 39 12 0 12 -4
+3 -21 -28 -52 27 -45 290 37 103 32 193 42 234 26z m-1150 -61 c61 -24 23 -59
+-97 -90 -118 -31 -127 -29 -181 32 l-48 52 69 12 c77 13 215 10 257 -6z m327
+-81 c0 -5 -7 -10 -16 -10 -8 0 -12 5 -9 10 3 6 10 10 16 10 5 0 9 -4 9 -10z
+m527 -1107 c-3 -10 -5 -2 -5 17 0 19 2 27 5 18 2 -10 2 -26 0 -35z m-148 -308
+c11 -19 17 -35 12 -35 -5 0 -30 -22 -57 -50 -65 -65 -100 -68 -84 -7 5 18 14
+52 20 76 11 42 12 43 26 22 20 -28 32 -27 46 4 6 14 12 25 14 25 1 0 11 -16 23
+-35z m361 -54 c0 -5 -4 -9 -10 -9 -5 0 -10 7 -10 16 0 8 5 12 10 9 6 -3 10
+-10 10 -16z m53 -68 c-7 -2 -19 -2 -25 0 -7 3 -2 5 12 5 14 0 19 -2 13 -5z
+m-103 -75 c0 -9 -9 -19 -20 -22 -11 -3 -29 -9 -40 -12 -20 -6 -21 -5 -5 32 25
+60 36 70 51 42 8 -13 13 -31 14 -40z m-331 -34 c1 -34 -39 -24 -55 15 -8 18
+-11 37 -8 42 9 15 63 -34 63 -57z m590 -30 c9 -8 -31 -16 -54 -10 -41 10 -30
+28 13 20 20 -4 39 -8 41 -10z m251 -115 c0 -5 -4 -9 -10 -9 -5 0 -10 7 -10 16
+0 8 5 12 10 9 6 -3 10 -10 10 -16z m-1830 -33 c0 -22 -19 -29 -36 -15 -12 10
+-12 14 -2 20 20 13 38 10 38 -5z m1433 -53 c4 -2 7 -20 7 -40 0 -31 -2 -35
+-22 -30 -13 3 -82 13 -154 23 -136 18 -156 30 -96 53 25 10 247 5 265 -6z
+m-619 -86 c14 -10 16 -21 11 -50 -7 -37 -8 -37 -56 -37 -35 0 -54 5 -69 20
+-11 11 -26 17 -33 14 -13 -5 -45 22 -36 30 9 9 107 35 135 35 16 1 38 -5 48
+-12z m-669 -107 c-3 -5 -15 -10 -26 -10 -11 0 -17 5 -14 10 3 6 15 10 26 10
+11 0 17 -4 14 -10z m144 -39 c20 -22 50 -43 66 -47 46 -11 47 -13 24 -46 -27
+-37 -78 -69 -95 -60 -7 4 -26 26 -43 49 -25 34 -31 53 -31 93 0 45 2 50 22 50
+12 0 37 -17 57 -39z m461 -106 c0 -3 -9 -24 -20 -46 -20 -39 -21 -39 -50 -24
+-39 20 -69 19 -132 -5 -28 -11 -53 -18 -56 -16 -6 7 62 54 108 75 40 18 150
+29 150 16z m-750 -36 c17 -30 5 -35 -38 -14 -37 18 -37 18 -12 26 38 11 38 11
+50 -12z m596 -220 c21 -23 35 -159 16 -159 -24 0 -272 113 -265 121 9 9 188
+58 214 59 9 0 24 -9 35 -21z m1804 -1794 c-19 -7 -42 -13 -50 -13 -8 0 1 6 20
+13 19 7 42 13 50 13 8 0 -1 -6 -20 -13z m-85 -25 c-11 -5 -27 -9 -35 -9 -9 0
+-8 4 5 9 11 5 27 9 35 9 9 0 8 -4 -5 -9z m-70 -20 c-11 -5 -27 -9 -35 -9 -9 0
+-8 4 5 9 11 5 27 9 35 9 9 0 8 -4 -5 -9z m-88 -26 c-3 -3 -12 -4 -19 -1 -8 3
+-5 6 6 6 11 1 17 -2 13 -5z m-862 -134 c-3 -5 -19 -10 -36 -10 -16 0 -29 5
+-29 10 0 6 16 10 36 10 21 0 33 -4 29 -10z m-2285 -101 c-36 -10 -69 -18 -75
+-18 -16 2 98 37 120 37 11 0 -9 -8 -45 -19z" />
+        </g>
+    </svg>
+
+    <div class="circadian-invert" style="width:100%; height: 200px;;">
+
+    </div>
+
+    <!-- time slider -->
+    <!-- <div class="slider-container"> -->
+    <!-- <input type="range" class="slider" min="0" max="100" value="0" id="animation-slider"> -->
+    <!-- <div class="value">Animation Progress: <span id="slider-value">0%</span></div> -->
+    <!-- </div> -->
+
+    <div
+        style="position: absolute; top: 240px; left: 50%; transform: translate(-50%); display: flex; flex-direction: column; align-items: center;">
+
+        <canvas id="sunPieChart" width="200" height="200"
+            style="height: 200px; width: 200px; margin-left: auto; margin-right: auto;"></canvas>
+
+        <h2 class="alfa-slab-one-regular circadian">Theme</h2>
+
+        <div class="theme-buttons" style=" margin-left:auto; margin-right: auto; width: 600px; ;">
+            <button onclick="setTheme('original')" data-theme="original">Original</button>
+            <button onclick="setTheme('claude')" class="active" data-theme="claude">Claude</button>
+            <button onclick="setTheme('chatgpt4o')" data-theme="chatgpt4o">ChatGPT 4o</button>
+            <button onclick="setTheme('grayscale')" data-theme="grayscale">Grayscale</button>
+            <button onclick="setTheme('redscale')" data-theme="redscale">Redscale</button>
+            <button onclick="setTheme('cyber')" data-theme="cyber">Cyber</button>
+            <button onclick="setTheme('realistic')" data-theme="realistic">Realistic</button>
+            <button onclick="setTheme('apple')" data-theme="apple">Apple</button>
+        </div>
+
+        <h2 class="alfa-slab-one-regular circadian">Transition</h2>
+        <div class="fade-buttons" style=" margin-left:auto; margin-right: auto; width: 400px;">
+
+            <button onclick="setFade('continuous')" data-fade="continuous" class="active">continuous</button>
+            <button onclick="setFade('staged')" data-fade="staged">staged</button>
+
+        </div>
+
+        <h2 class="alfa-slab-one-regular circadian">GPS Coords</h2>
+        <div class="coordinates-input" style="margin-bottom: 40px;">
+            <input type="text" id="coordinates" placeholder="43.055528, -76.136194" value="43.055528, -76.136194"
+                class="circadian"
+                style="margin-bottom: 10px; border: none; font-size: 26px; padding:18px; color: inherit; background: transparent;">
+            <div id="map" class="circadian-invert"></div>
+        </div>
+
+        <p class="circadian-invert" style="text-align: center;;">
+            circadian is a minimalistic raw javascript that animates background and foreground colors of elements on a
+            page according to
+            a time and place on earth.
+        </p>
+
+        <p class="circadian-invert" style="text-align: center;;">
+            This demo is cycling the 24 hour cycle in 40 seconds. You can type in your own coordinates and hit enter to
+            get animations based on your time and place.
+        </p>
+
+    </div>
+
+    <script>
+        const myCirc = new Circadian();
+
+        function setTheme(themeName) {
+            myCirc.config.themeName = themeName;
+            document.querySelectorAll('.theme-buttons button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.theme-buttons button[data-theme="${themeName}"]`).classList.add('active');
+            initCircadian();
+        }
+
+        function setFade(fadeName) {
+            myCirc.config.transitionMode = fadeName;
+            document.querySelectorAll('.fade-buttons button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.fade-buttons button[data-fade="${fadeName}"]`).classList.add('active');
+            initCircadian();
+        }
+
+
+
+        function initCircadian() {
+            const coordinatesInput = document.getElementById('coordinates').value;
+            const [latitude, longitude] = coordinatesInput.split(',').map(coord => parseFloat(coord.trim()));
+            const themeName = document.querySelector('.theme-buttons button.active')?.getAttribute('data-theme') || 'original';
+            const transitionMode = document.querySelector('.fade-buttons button.active')?.getAttribute('data-fade') || 'continuous';
+
+            if (!isNaN(latitude) && !isNaN(longitude)) {
+                const config = {
+                    coordinates: { lat: latitude, lon: longitude },
+                    themeName,
+                    transitionMode
+                };
+                myCirc.init(config);
+                renderSunPieChart(latitude, longitude);
+            } else {
+                alert('Please enter valid GPS coordinates.');
+            }
+
+        }
+
+        function renderSunPieChart(lat, lon) {
+            const now = new Date();
+            const times = SunCalc.getTimes(now, lat, lon);
+            const sortedTimes = Object.entries(times).sort((a, b) => a[1] - b[1]);
+
+            const totalMs = 24 * 60 * 60 * 1000;
+            const durations = [];
+            for (let i = 0; i < sortedTimes.length; i++) {
+                const start = sortedTimes[i][1];
+                const end = sortedTimes[(i + 1) % sortedTimes.length][1];
+                const duration = ((end - start + totalMs) % totalMs) / totalMs * 360;
+                durations.push(duration);
+            }
+
+            const labels = sortedTimes.map(([key]) => key);
+            const data = durations;
+            console.log('labels', labels, myCirc.config.bgColors);
+            //
+            const backgroundColors = labels.map(label => myCirc.config.bgColors[label]);
+
+            const dawnIndex = labels.indexOf('dawn');
+            const rotationAngle = (durations.slice(0, dawnIndex).reduce((a, b) => a + b, 0) + durations[dawnIndex] / 2) - 180;
+
+            if (myCirc.sunPieChartInstance) {
+                myCirc.sunPieChartInstance.destroy();
+                myCirc.sunPieChartInstance = null;
+            }
+
+            const canvas = document.getElementById('sunPieChart');
+            if (!canvas) {
+                console.error('Canvas element with id "sunPieChart" not found.');
+                return;
+            }
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            myCirc.sunPieChartInstance = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels,
+                    datasets: [{
+                        data,
+                        backgroundColor: backgroundColors
+                    }]
+                },
+                options: {
+                    rotation: rotationAngle * (Math.PI / 180),
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+
+            document.getElementById('coordinates').addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    const coordinatesInput = event.target.value;
+                    const [latitude, longitude] = coordinatesInput.split(',').map(coord => parseFloat(coord.trim()));
+                    console.log('keypress lat and long: ', latitude, longitude);
+                    if (!isNaN(latitude) && !isNaN(longitude)) {
+
+                        myCirc.init({ coordinates: { lat: latitude, lon: longitude } });
+
+
+                        renderSunPieChart(latitude, longitude);
+                    } else {
+                        alert('Please enter valid GPS coordinates.');
+                    }
+                }
+            });
+
+
+
+            renderSunPieChart(myCirc.config.coordinates.lat, myCirc.config.coordinates.lon);
+            initCircadian();
+
+
+        });
+
+
+        document.getElementById('coordinates').addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                initCircadian();
+            }
+        });
+
+        document.querySelectorAll('.theme-buttons button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.theme-buttons button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                initCircadian();
+            });
+        });
     </script>
-  </head>
 
-  <body>
-  </body>
+</body>
+
 </html>

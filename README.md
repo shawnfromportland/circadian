@@ -1,6 +1,8 @@
 
 ## Circadian
-<a href="https://www.buymeacoffee.com/shawnfromportland" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+<a href="https://www.buymeacoffee.com/shawnfromportland" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>  
+  
+
 Circadian animates the color of page elements according to a time and place on earth.  
   
   live demo: <a href="https://shawnfromportland.com/circadian">shawnfromportland.com/circadian</a>
@@ -117,6 +119,10 @@ If you want to cycle the animation faster than the default 24 hours, you can ove
 - time-of-day localized color scheme for your whole website. dawn color scheme during dawn. night color scheme at night. centered on the visitor's location or the headquarters location.
 - create a simple 10 minute day/night ambience cycle for a browser-based sidescroller game.
 - create a snow globe scene in html that animates a day night cycle every 30 seconds.
-- many more
+- many more  
+  
+  
+  <a href="https://www.buymeacoffee.com/shawnfromportland" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>  
+  
   
   

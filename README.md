@@ -7,10 +7,16 @@ Circadian animates the color of page elements according to a time and place on e
 
 ### Usage
 
-Include it from the CDN:
-(coming soon... this library is in progress)
+Include it from CDN in your html file:
+```
+<script src="https://cdn.jsdelivr.net/gh/shawnfromportland/circadian@main/circadian.js"></script>
+```
+instantiate it
 ```javascript
 const myCircadian = new Circadian();
+```
+initialize the animations
+```
 myCircadian.init();
 ```
 
@@ -95,16 +101,7 @@ myCircadian.init({
   - `nauticalDusk`: "#f7c283"
   - `night`: "#f7ca83"
 
-  
-   ## What do you mean based on a time and place on earth?
-   This code uses the `sunCalc` library and the provided latitude and longitude coordinates to get real-world data about today's daylight ranges according to their names like dusk, nautical twilight, etc. The `circadian` function then maps these real-world values on a 24-hour animation cycle, morphing through the colors provided by the selected color palette theme. 
-     
-
-  You can then run the 24-hour cycle in any duration you want. For example:
-  - For a browser-based game having 10-minute day cycles.
-  - For a snow globe that animates a day cycle every 30 seconds.
-  
-  ### Applying Circadian Animation with Classes
+  ## Applying Circadian Animation with Classes
 
   You can use the `.circadian` or `.circadian-invert` classes to apply the circadian animation to any element. By default, the animation will run on a 24-hour cycle synced to the present date (showing night colors if it is night time).
 
@@ -128,3 +125,13 @@ myCircadian.init({
   ```
 
   This will make the circadian animation complete a full cycle in 1 hour instead of 24 hours.
+  
+   ## What do you mean based on a time and place on earth?
+   This code uses the `sunCalc` library and the provided latitude and longitude coordinates to get real-world data about today's daylight ranges according to their names like dusk, nautical twilight, etc. The `circadian` function then maps these real-world values on a 24-hour animation cycle, morphing through the colors provided by the selected color palette theme. 
+     
+
+  You can then run the 24-hour cycle in any duration you want. For example:
+  - For a browser-based game having 10-minute day cycles.
+  - For a snow globe that animates a day cycle every 30 seconds.
+  
+  

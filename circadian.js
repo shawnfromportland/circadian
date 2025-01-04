@@ -278,7 +278,7 @@ class Circadian {
             }
         }
     };
-    sunPieChartInstance = null;
+    
     constructor() {
         const theme = this.themes[this.config.themeName];
         console.log('config: ', this.config,'theme:', theme);
@@ -299,7 +299,6 @@ class Circadian {
         // Initialize the circadian animations
         this.initCircadianAnimation();
 
-        this.updateCircadianStyles(); // Initial call
     }
 
     fetchSunData(coords) {
@@ -323,7 +322,7 @@ class Circadian {
 
         console.log('generateCircadianCSS entered. this.config.transitionMode ', this.config.transitionMode);
         let cssContent = `
-            @keyframes color-animation {
+            @keyframes circadian {
                 0%, 100% {
                     background: ${bgColors.nadir};
                     color: ${textColors.nadir};
@@ -331,7 +330,7 @@ class Circadian {
         `;
 
         let invertCssContent = `
-            @keyframes color-animation-invert {
+            @keyframes circadian-invert {
                 0%, 100% {
                     background: ${textColors.nadir};
                     color: ${bgColors.nadir};
@@ -401,25 +400,33 @@ class Circadian {
             });
         }
 
-        cssContent += `
-            }
-            body {
-                animation: color-animation 86400s linear -${secondsSinceDayStart}s infinite normal;
-            }
-            a, a:visited, a:active {
-                animation: color-animation 86400s linear -${secondsSinceDayStart}s infinite normal;
-            }
-        `;
+        cssContent += `}.circadian {
+            animation: circadian 86400s linear -${secondsSinceDayStart}s infinite normal;
+        }
 
-        invertCssContent += `
-            }
-            body.invert {
-                animation: color-animation-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
-            }
-            body.invert a, body.invert a:visited, body.invert a:active {
-                animation: color-animation-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
-            }
-        `;
+        .circadian-invert {
+            animation: circadian-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
+        }
+
+        // cssContent += `
+        //     }
+        //     body {
+        //         animation: color-animation 86400s linear -${secondsSinceDayStart}s infinite normal;
+        //     }
+        //     a, a:visited, a:active {
+        //         animation: color-animation 86400s linear -${secondsSinceDayStart}s infinite normal;
+        //     }
+        // `;
+
+        // invertCssContent += `
+        //     }
+        //     body.invert {
+        //         animation: color-animation-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
+        //     }
+        //     body.invert a, body.invert a:visited, body.invert a:active {
+        //         animation: color-animation-invert 86400s linear -${secondsSinceDayStart}s infinite normal;
+        //     }
+        // `;
 
         styleEl.innerHTML = cssContent + invertCssContent;
         // Remove old style tag if it exists
@@ -439,78 +446,5 @@ class Circadian {
     }
 
     
-
-    updateCircadianStyles() {
-        const now = new Date();
-        const times = SunCalc.getTimes(now, this.config.coordinates.lat, this.config.coordinates.long);
-
-        const sortedTimes = Object.entries(times)
-            .sort((a, b) => a[1] - b[1]);
-
-        // let currentSegment = sortedTimes.find((segment, index) => {
-        //     const nextSegment = sortedTimes[index + 1];
-        //     return nextSegment ? now >= segment[1] && now < nextSegment[1] : now >= segment[1];
-        // }) || sortedTimes[0];
-
-        
-
-        // Calculate durations
-        const totalMs = 24 * 60 * 60 * 1000;
-        const durations = [];
-        for (let i = 0; i < sortedTimes.length; i++) {
-            const start = sortedTimes[i][1];
-            const end = sortedTimes[(i + 1) % sortedTimes.length][1];
-            const duration = ((end - start + totalMs) % totalMs) / totalMs * 360; // Angle in degrees
-            durations.push(duration);
-        }
-
-        // Prepare Chart.js data
-        const labels = sortedTimes.map(([key]) => key);
-        const data = durations;
-        const backgroundColors = labels.map(label => this.config.bgColors[label]);
-
-        // Find the index of the dawn slice
-        const dawnIndex = labels.indexOf('dawn');
-        const rotationAngle = (durations.slice(0, dawnIndex).reduce((a, b) => a + b, 0) + durations[dawnIndex] / 2) - 180;
-
-        // Destroy existing chart instance if it exists
-        if (this.sunPieChartInstance) {
-            this.sunPieChartInstance.destroy();
-            this.sunPieChartInstance = null; // Ensure the instance is reset
-        }
-
-        // Clear the canvas before reusing it
-        const canvas = document.getElementById('sunPieChart');
-        if (!canvas) {
-            console.error('Canvas element with id "sunPieChart" not found.');
-            return;
-        }
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Render Chart
-        this.sunPieChartInstance = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels,
-                datasets: [{
-                    data,
-                    backgroundColor: backgroundColors
-                }]
-            },
-            options: {
-                rotation: rotationAngle * (Math.PI / 180), // Rotate the chart
-                plugins: {
-                    legend: {
-                        display: false // Hide the legend
-                    }
-                }
-            }
-        });
-    }
 }
-
-// Create an instance of Circadian
-const circadian = new Circadian();
-
 

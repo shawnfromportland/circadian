@@ -117,20 +117,19 @@
             margin-top: 10px;
             font-size: 18px;
         }
-
-        .circadian {
-            animation: color-animation 40s linear infinite normal;
-        }
-
-        .circadian-invert {
-            animation: color-animation-invert 40s linear infinite normal;
-        }
     </style>
+    <style id="circadian-styles"></style>
 
 </head>
 
 <body class="circadian">
-
+    <style>
+        .circadian,
+        .circadian-invert {
+            animation: circadian 40s linear infinite normal;
+            animation-duration: 40s;
+        }
+    </style>
     <h1 class="alfa-slab-one-regular">Circadian</h1>
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100%" style="margin:0;"
         viewBox="0 0 1280.000000 792.000000" preserveAspectRatio="xMidYMid meet" class="svgart">

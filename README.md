@@ -9,6 +9,9 @@ Circadian animates the color of page elements according to a time and place on e
 
 1. Include it from CDN in your html file:
 ```
+// relies on sunCalc:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/suncalc/1.8.0/suncalc.min.js"></script>
+// include circadian:
 <script src="https://cdn.jsdelivr.net/gh/shawnfromportland/circadian@main/circadian.js"></script>
 ```
 2. add the circadian class to anything you want to receive a circadian animation:
